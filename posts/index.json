@@ -1,0 +1,12 @@
+[
+  {
+    "slug": "welcome-to-gle",
+    "title": "欢迎来到 GLE 个人知识库",
+    "date": "2025-01-15",
+    "category": "随笔",
+    "tags": ["开始", "介绍", "规划"],
+    "coverImage": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1920&q=80",
+    "excerpt": "这是 GLE 个人知识库的第一篇文章。记录开始的意义，以及未来的规划。",
+    "readTime": 3
+  }
+]

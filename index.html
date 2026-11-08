@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>GLE · 个人知识库</meta>
+<meta name="description" content="每日一篇，记录成长。技术、思考、生活。" />
+<link rel="preconnect" href="https://images.unsplash.com" />
+<link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+<div class="bg-layer" aria-hidden="true"></div>
+<div class="particles" aria-hidden="true"></div>
+
+<header class="header">
+  <a href="/" class="logo">GLE<span class="logo-sub">Personal Knowledge Base</span></a>
+  <nav class="nav">
+    <a href="/" class="nav-link active">首页</a>
+    <a href="/archive.html" class="nav-link">归档</a>
+    <a href="/tags.html" class="nav-link">标签</a>
+    <a href="/about.html" class="nav-link">关于</a>
+  </nav>
+  <time class="date-badge" id="currentDate"></time>
+</header>
+
+<main class="main">
+  <section class="hero" aria-labelledby="hero-title">
+    <span class="hero-tag">每日更新</span>
+    <h1 id="hero-title" class="hero-title">个人知识库</h1>
+    <p class="hero-desc">记录每一天的思考与成长。技术笔记、读书心得、生活感悟——在这里沉淀，随时回顾。</p>
+    <div class="hero-stats">
+      <div class="stat"><span class="stat-value" id="totalPosts">0</span><span class="stat-label">篇文章</span></div>
+      <div class="stat"><span class="stat-value" id="totalTags">0</span><span class="stat-label">个标签</span></div>
+      <div class="stat"><span class="stat-value" id="daysRunning">0</span><span class="stat-label">天坚持</span></div>
+    </div>
+  </section>
+
+  <section aria-labelledby="posts-title">
+    <header class="section-header">
+      <h2 id="posts-title" class="section-title">最新文章</h2>
+    </header>
+    <div class="posts-grid" id="postsGrid">
+      <div class="loading" style="display:flex;align-items:center;justify-content:center;padding:60px;color:var(--text-muted);">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="animation:spin 1s linear infinite;"><circle cx="12" cy="12" r="10" stroke-opacity="0.25"/><path d="M12 2a10 10 0 0 1 10 10" stroke-opacity="1" stroke-linecap="round"/></svg>
+        <span style="margin-left:12px;">加载中...</span>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <p>© 2025 GLE · 个人知识库</p>
+  <div class="footer-links">
+    <a href="/rss.xml">RSS</a>
+    <a href="https://github.com/yww006/gle" target="_blank" rel="noopener">GitHub</a>
+    <a href="/about.html">关于</a>
+  </div>
+</footer>
+
+<script>
+  // 设置当前日期
+  document.getElementById('currentDate').textContent = new Date().toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' });
+</script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
