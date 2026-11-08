@@ -20,6 +20,8 @@ POSTS_DIR = ROOT / 'posts'
 ASSETS_DIR = ROOT / 'assets'
 DIST_DIR = ROOT / 'dist'
 
+BASE_HREF = '/gle/'
+
 def load_posts_index():
     """加载文章索引"""
     index_path = POSTS_DIR / 'index.json'
@@ -92,7 +94,7 @@ def generate_article_page(post, template):
     tags_html = ''
     if post.get('tags'):
         tags_html = ''.join(
-            f'<a href="../?tag={escape_html(t)}" class="tag" style="text-decoration:none;">#{escape_html(t)}</a>'
+            f'<a href="?tag={escape_html(t)}" class="tag" style="text-decoration:none;">#{escape_html(t)}</a>'
             for t in post['tags']
         )
     
@@ -112,8 +114,6 @@ def generate_article_page(post, template):
 
 def generate_archive_page(posts):
     """生成归档页"""
-    template = read_template(ROOT / 'archive.html') if (ROOT / 'archive.html').exists() else None
-    
     # 按年月分组
     from collections import defaultdict
     grouped = defaultdict(list)
@@ -147,18 +147,19 @@ def generate_archive_page(posts):
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>文章归档 · GLE</title>
+<base href="{BASE_HREF}" />
 <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 <body>
 <div class="bg-layer"></div>
 <div class="particles"></div>
 <header class="header">
-  <a href="/" class="logo">GLE<span class="logo-sub">Personal Knowledge Base</span></a>
+  <a href="./" class="logo">GLE<span class="logo-sub">Personal Knowledge Base</span></a>
   <nav class="nav">
-    <a href="/" class="nav-link">首页</a>
-    <a href="/archive.html" class="nav-link active">归档</a>
-    <a href="/tags.html" class="nav-link">标签</a>
-    <a href="/about.html" class="nav-link">关于</a>
+    <a href="./" class="nav-link">首页</a>
+    <a href="archive.html" class="nav-link active">归档</a>
+    <a href="tags.html" class="nav-link">标签</a>
+    <a href="about.html" class="nav-link">关于</a>
   </nav>
 </header>
 <main class="main">
@@ -188,7 +189,7 @@ def generate_tags_page(posts):
     tags_html = []
     for tag, count in tag_counts.most_common():
         tags_html.append(f'''
-            <a href="/?tag={escape_html(tag)}" class="tag" style="font-size:14px;padding:8px 16px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;">
+            <a href="?tag={escape_html(tag)}" class="tag" style="font-size:14px;padding:8px 16px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;">
                 #{escape_html(tag)} <span style="background:var(--bg-primary);padding:2px 8px;border-radius:100px;font-size:12px;">{count}</span>
             </a>
         ''')
@@ -199,18 +200,19 @@ def generate_tags_page(posts):
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>标签 · GLE</title>
+<base href="{BASE_HREF}" />
 <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 <body>
 <div class="bg-layer"></div>
 <div class="particles"></div>
 <header class="header">
-  <a href="/" class="logo">GLE<span class="logo-sub">Personal Knowledge Base</span></a>
+  <a href="./" class="logo">GLE<span class="logo-sub">Personal Knowledge Base</span></a>
   <nav class="nav">
-    <a href="/" class="nav-link">首页</a>
-    <a href="/archive.html" class="nav-link">归档</a>
-    <a href="/tags.html" class="nav-link active">标签</a>
-    <a href="/about.html" class="nav-link">关于</a>
+    <a href="./" class="nav-link">首页</a>
+    <a href="archive.html" class="nav-link">归档</a>
+    <a href="tags.html" class="nav-link active">标签</a>
+    <a href="about.html" class="nav-link">关于</a>
   </nav>
 </header>
 <main class="main">
@@ -322,24 +324,25 @@ def main():
     print("🏠 首页已复制")
     
     # 9. 生成 about 页
-    about_html = '''<!DOCTYPE html>
+    about_html = f'''<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>关于 · GLE</title>
+<base href="{BASE_HREF}" />
 <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 <body>
 <div class="bg-layer"></div>
 <div class="particles"></div>
 <header class="header">
-  <a href="/" class="logo">GLE<span class="logo-sub">Personal Knowledge Base</span></a>
+  <a href="./" class="logo">GLE<span class="logo-sub">Personal Knowledge Base</span></a>
   <nav class="nav">
-    <a href="/" class="nav-link">首页</a>
-    <a href="/archive.html" class="nav-link">归档</a>
-    <a href="/tags.html" class="nav-link">标签</a>
-    <a href="/about.html" class="nav-link active">关于</a>
+    <a href="./" class="nav-link">首页</a>
+    <a href="archive.html" class="nav-link">归档</a>
+    <a href="tags.html" class="nav-link">标签</a>
+    <a href="about.html" class="nav-link active">关于</a>
   </nav>
 </header>
 <main class="main">
