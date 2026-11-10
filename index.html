@@ -1,51 +1,222 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-theme="dark">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>GLE · 个人知识库</meta>
-<meta name="description" content="每日一篇，记录成长。技术、思考、生活。" />
-<base href="/gle/" />
+<title>GLE · 个人知识库</title>
+<meta name="description" content="每日一篇，记录成长。技术笔记、读书心得、生活感悟——在这里沉淀，随时回顾。" />
+<meta name="theme-color" content="#0f0f12" media="(prefers-color-scheme: dark)" />
+<meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)" />
 <link rel="preconnect" href="https://images.unsplash.com" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preload" as="style" href="assets/css/style.css" />
 <link rel="stylesheet" href="assets/css/style.css" />
+<link rel="alternate" type="application/rss+xml" title="GLE RSS" href="rss.xml" />
+<link rel="sitemap" type="application/xml" href="sitemap.xml" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="GLE · 个人知识库" />
+<meta property="og:description" content="每日一篇，记录成长。技术、思考、生活。" />
+<meta property="og:url" content="https://yww006.github.io/gle/" />
+<meta property="og:image" content="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200&q=80" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="GLE · 个人知识库" />
+<meta name="twitter:description" content="每日一篇，记录成长。技术、思考、生活。" />
+<meta name="twitter:image" content="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200&q=80" />
+
+<!-- JSON-LD Structured Data -->
+<script type="application/ld+json" id="json-ld"></script>
+
+<base href="/gle/" />
 </head>
 <body>
 <div class="bg-layer" aria-hidden="true"></div>
 <div class="particles" aria-hidden="true"></div>
 
+<!-- Theme Toggle (fixed, top-right) -->
+<button class="theme-toggle" id="themeToggle" aria-label="切换深色/浅色模式" title="切换主题">
+  <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+  <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+</button>
+
 <header class="header">
-  <a href="./" class="logo">GLE<span class="logo-sub">Personal Knowledge Base</span></a>
-  <nav class="nav">
-    <a href="./" class="nav-link active">首页</a>
-    <a href="archive.html" class="nav-link">归档</a>
-    <a href="tags.html" class="nav-link">标签</a>
-    <a href="about.html" class="nav-link">关于</a>
+  <a href="./" class="logo" aria-label="GLE 首页">
+    <span class="logo-mark" aria-hidden="true"></span>
+    GLE<span class="logo-sub">Personal Knowledge Base</span>
+  </a>
+  <nav class="nav" role="navigation" aria-label="主导航">
+    <a href="./" class="nav-link active" data-filter="all">全部</a>
+    <a href="./archive.html" class="nav-link">归档</a>
+    <a href="./tags.html" class="nav-link">标签</a>
+    <a href="./about.html" class="nav-link">关于</a>
   </nav>
-  <time class="date-badge" id="currentDate"></time>
+  <time class="date-badge" id="currentDate" datetime=""></time>
 </header>
 
-<main class="main">
+<main class="main" id="mainContent">
+  <!-- ===== HERO SECTION ===== -->
   <section class="hero" aria-labelledby="hero-title">
-    <span class="hero-tag">每日更新</span>
-    <h1 id="hero-title" class="hero-title">个人知识库</h1>
-    <p class="hero-desc">记录每一天的思考与成长。技术笔记、读书心得、生活感悟——在这里沉淀，随时回顾。</p>
-    <div class="hero-stats">
-      <div class="stat"><span class="stat-value" id="totalPosts">0</span><span class="stat-label">篇文章</span></div>
-      <div class="stat"><span class="stat-value" id="totalTags">0</span><span class="stat-label">个标签</span></div>
-      <div class="stat"><span class="stat-value" id="daysRunning">0</span><span class="stat-label">天坚持</span></div>
+    <div class="hero-bg" aria-hidden="true">
+      <div class="hero-gradient"></div>
+      <div class="hero-pattern"></div>
+    </div>
+    <div class="hero-content">
+      <span class="hero-tag">每日更新 · 坚持输出</span>
+      <h1 id="hero-title" class="hero-title">个人知识库</h1>
+      <p class="hero-desc">记录每一天的思考与成长。技术笔记、读书心得、生活感悟——在这里沉淀，随时回顾。</p>
+      
+      <div class="hero-actions">
+        <a href="#posts-section" class="btn btn-primary">开始阅读</a>
+        <a href="./archive.html" class="btn btn-secondary">浏览归档</a>
+      </div>
+
+      <div class="hero-stats" role="region" aria-label="站点统计">
+        <div class="stat">
+          <span class="stat-value" id="totalPosts">0</span>
+          <span class="stat-label">篇文章</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value" id="totalTags">0</span>
+          <span class="stat-label">个标签</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value" id="totalCategories">0</span>
+          <span class="stat-label">个分类</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value" id="daysRunning">0</span>
+          <span class="stat-label">天坚持</span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="hero-scroll-hint" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
     </div>
   </section>
 
-  <section aria-labelledby="posts-title">
+  <!-- ===== FEATURED / PINNED POST ===== -->
+  <section class="featured-section" id="featuredSection" aria-labelledby="featured-title" hidden>
+    <header class="section-header">
+      <h2 id="featured-title" class="section-title">精选推荐</h2>
+    </header>
+    <div class="featured-grid" id="featuredGrid"></div>
+  </section>
+
+  <!-- ===== DAILY QUOTE ===== -->
+  <section class="quote-section" aria-labelledby="quote-title" id="quoteSection">
+    <blockquote class="daily-quote">
+      <p id="quoteText">加载中...</p>
+      <footer id="quoteAuthor">—</footer>
+    </blockquote>
+  </section>
+
+  <!-- ===== CATEGORY NAVIGATION ===== -->
+  <section class="categories-section" id="categoriesSection" aria-labelledby="categories-title" hidden>
+    <header class="section-header">
+      <h2 id="categories-title" class="section-title">分类导航</h2>
+    </header>
+    <div class="categories-grid" id="categoriesGrid"></div>
+  </section>
+
+  <!-- ===== POSTS LIST WITH FILTERS ===== -->
+  <section class="posts-section" id="posts-section" aria-labelledby="posts-title">
     <header class="section-header">
       <h2 id="posts-title" class="section-title">最新文章</h2>
+      <div class="posts-toolbar">
+        <div class="filter-group" role="group" aria-label="筛选文章">
+          <button class="filter-btn active" data-filter="all" aria-pressed="true">全部</button>
+          <button class="filter-btn" data-filter="featured" aria-pressed="false">精选</button>
+        </div>
+        <div class="sort-group" role="group" aria-label="排序方式">
+          <select id="sortSelect" aria-label="排序">
+            <option value="date-desc">最新优先</option>
+            <option value="date-asc">最早优先</option>
+            <option value="title-az">标题 A-Z</option>
+            <option value="readTime-asc">阅读时长 ↑</option>
+          </select>
+        </div>
+        <button class="view-toggle" id="viewToggle" aria-label="切换列表/网格视图" title="切换视图">
+          <svg class="icon-grid" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+          <svg class="icon-list" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+      </div>
     </header>
-    <div class="posts-grid" id="postsGrid">
-      <div class="loading" style="display:flex;align-items:center;justify-content:center;padding:60px;color:var(--text-muted);">
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="animation:spin 1s linear infinite;"><circle cx="12" cy="12" r="10" stroke-opacity="0.25"/><path d="M12 2a10 10 0 0 1 10 10" stroke-opacity="1" stroke-linecap="round"/></svg>
-        <span style="margin-left:12px;">加载中...</span>
+    
+    <div class="posts-grid" id="postsGrid" role="list">
+      <div class="loading" aria-live="polite">
+        <svg class="spinner" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10" stroke-opacity="0.25"/><path d="M12 2a10 10 0 0 1 10 10" stroke-opacity="1" stroke-linecap="round"/></svg>
+        <span>加载文章中...</span>
       </div>
     </div>
+
+    <div class="pagination" id="pagination" hidden aria-label="分页导航">
+      <button class="page-btn" id="prevPage" aria-label="上一页" disabled>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+        <span>上一页</span>
+      </button>
+      <div class="page-numbers" id="pageNumbers" role="navigation" aria-label="页码"></div>
+      <button class="page-btn" id="nextPage" aria-label="下一页">
+        <span>下一页</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+    </div>
+
+    <div class="load-more" id="loadMore" hidden>
+      <button class="btn btn-secondary" id="loadMoreBtn">加载更多</button>
+    </div>
+  </section>
+
+  <!-- ===== TAG CLOUD / POPULAR TAGS ===== -->
+  <section class="tags-section" id="tagsSection" aria-labelledby="tags-title" hidden>
+    <header class="section-header">
+      <h2 id="tags-title" class="section-title">热门标签</h2>
+      <a href="./tags.html" class="view-all">查看所有标签 →</a>
+    </header>
+    <div class="tag-cloud" id="tagCloud" role="list"></div>
+  </section>
+
+  <!-- ===== POPULAR POSTS ===== -->
+  <section class="popular-section" id="popularSection" aria-labelledby="popular-title" hidden>
+    <header class="section-header">
+      <h2 id="popular-title" class="section-title">热门阅读</h2>
+    </header>
+    <div class="popular-list" id="popularList" role="list"></div>
+  </section>
+
+  <!-- ===== NEWSLETTER / SUBSCRIBE ===== -->
+  <section class="newsletter-section" aria-labelledby="newsletter-title">
+    <div class="newsletter-card">
+      <div class="newsletter-content">
+        <h2 id="newsletter-title">不错过每一篇</h2>
+        <p>订阅 RSS 或关注 GitHub，第一时间获取新文章。</p>
+        <div class="newsletter-actions">
+          <a href="rss.xml" class="btn btn-primary" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1"/></svg>
+            订阅 RSS
+          </a>
+          <a href="https://github.com/yww006/gle" class="btn btn-secondary" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+            关注项目
+          </a>
+        </div>
+      </div>
+      <div class="newsletter-illustration" aria-hidden="true">
+        <svg viewBox="0 0 120 120" fill="none"><circle cx="60" cy="60" r="50" stroke="currentColor" stroke-width="1.5" opacity="0.2"/><path d="M60 20v60M20 60h80" stroke="currentColor" stroke-width="1.5" opacity="0.2"/><circle cx="60" cy="60" r="15" fill="currentColor" opacity="0.15"/></svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FRIEND LINKS ===== -->
+  <section class="friends-section" id="friendsSection" aria-labelledby="friends-title" hidden>
+    <header class="section-header">
+      <h2 id="friends-title" class="section-title">友情链接</h2>
+    </header>
+    <div class="friends-grid" id="friendsGrid" role="list"></div>
   </section>
 </main>
 
@@ -54,13 +225,15 @@
   <div class="footer-links">
     <a href="rss.xml">RSS</a>
     <a href="https://github.com/yww006/gle" target="_blank" rel="noopener">GitHub</a>
-    <a href="about.html">关于</a>
+    <a href="./about.html">关于</a>
+    <a href="./archive.html">归档</a>
+    <a href="./tags.html">标签</a>
   </div>
 </footer>
 
 <script>
-  // 设置当前日期
   document.getElementById('currentDate').textContent = new Date().toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' });
+  document.getElementById('currentDate').dateTime = new Date().toISOString().split('T')[0];
 </script>
 <script src="assets/js/main.js"></script>
 </body>
